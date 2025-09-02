@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://q36qwisooaa4"]
+
+[ext_resource type="Script" uid="uid://bnd1olcnbk1rg" path="res://ui/elements/bottom_panel.gd" id="1_0a8tq"]
+[ext_resource type="PackedScene" uid="uid://b2g1hsvnjgkka" path="res://ui/elements/note.tscn" id="2_mw3hf"]
+[ext_resource type="LabelSettings" uid="uid://d1bt7km27ggoq" path="res://ui/labels/h1_dark.tres" id="2_ud5x5"]
+[ext_resource type="LabelSettings" uid="uid://bcb3kj3i7x7aw" path="res://ui/labels/h2_dark.tres" id="3_mw3hf"]
+[ext_resource type="Texture2D" uid="uid://cgsh3p0bw4vsy" path="res://graphics/arrow_right.png" id="4_16dln"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jh7n4"]
+bg_color = Color(0.996078, 0.952941, 0.945098, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+
+[node name="BottomPanel" type="PanelContainer" node_paths=PackedStringArray("next_day_button", "prev_day_button", "add_note_button")]
+theme_override_styles/panel = SubResource("StyleBoxFlat_jh7n4")
+script = ExtResource("1_0a8tq")
+next_day_button = NodePath("VBoxContainer/BottomBar/TextureButton")
+prev_day_button = NodePath("VBoxContainer/BottomBar/TextureButton2")
+add_note_button = NodePath("VBoxContainer/BottomBar/AddNoteButton")
+note_prefab = ExtResource("2_mw3hf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Padding2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="DateContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="WeekLabel" type="Label" parent="VBoxContainer/DateContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.219608, 0.203922, 0.266667, 1)
+text = "Week XX"
+label_settings = ExtResource("2_ud5x5")
+horizontal_alignment = 1
+
+[node name="DayLabel" type="Label" parent="VBoxContainer/DateContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.219608, 0.203922, 0.266667, 1)
+text = "Monday"
+label_settings = ExtResource("3_mw3hf")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="NoteContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BottomBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/BottomBar"]
+self_modulate = Color(0.219608, 0.203922, 0.266667, 1)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("4_16dln")
+flip_h = true
+
+[node name="AddNoteButton" type="Button" parent="VBoxContainer/BottomBar"]
+custom_minimum_size = Vector2(600, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Add note"
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/BottomBar"]
+self_modulate = Color(0.219608, 0.203922, 0.266667, 1)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("4_16dln")
+
+[node name="Padding" type="Control" parent="VBoxContainer"]
+layout_mode = 2

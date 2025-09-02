@@ -1,0 +1,167 @@
+[gd_scene load_steps=12 format=3 uid="uid://bd2ghjfghxeet"]
+
+[ext_resource type="Script" uid="uid://b47212aqum0d7" path="res://application.gd" id="1_3k2th"]
+[ext_resource type="Theme" uid="uid://djfexiphh7ag7" path="res://graphics/default.tres" id="2_8ded3"]
+[ext_resource type="Script" uid="uid://bdywqu0ogkk0t" path="res://ui/elements/ui.gd" id="3_8ded3"]
+[ext_resource type="Texture2D" uid="uid://cgsh3p0bw4vsy" path="res://graphics/arrow_right.png" id="4_ftjwj"]
+[ext_resource type="LabelSettings" uid="uid://6t6mf22vrmja" path="res://ui/labels/h2_light.tres" id="5_yd2yr"]
+[ext_resource type="LabelSettings" uid="uid://d1q1as15yblci" path="res://ui/labels/h1_light.tres" id="6_w11e6"]
+[ext_resource type="Texture2D" uid="uid://d3qn7tpfp0qd2" path="res://graphics/unselected.png" id="7_hgkn3"]
+[ext_resource type="Texture2D" uid="uid://cdysvdm5x6dlt" path="res://graphics/selected.png" id="8_voyjw"]
+[ext_resource type="PackedScene" uid="uid://q36qwisooaa4" path="res://ui/elements/bottom_panel.tscn" id="9_mhfhc"]
+[ext_resource type="Texture2D" uid="uid://cmi3wnjgn6184" path="res://graphics/settings.png" id="11_ga41j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ded3"]
+content_margin_left = 14.0
+bg_color = Color(0.996078, 0.952941, 0.945098, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.807843, 0.776471, 0.768627, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Application" type="Node" node_paths=PackedStringArray("settings_button")]
+script = ExtResource("1_3k2th")
+settings_button = NodePath("UI/SettingsButton")
+
+[node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_8ded3")
+script = ExtResource("3_8ded3")
+
+[node name="BG" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.94902, 0.694118, 0.313726, 1)
+
+[node name="LogScreen" type="VBoxContainer" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="ActivityContainer" type="CenterContainer" parent="UI/LogScreen"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/LogScreen/ActivityContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="UI/LogScreen/ActivityContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("4_ftjwj")
+flip_h = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LogScreen/ActivityContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/LogScreen/ActivityContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Today I did"
+label_settings = ExtResource("5_yd2yr")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/LogScreen/ActivityContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "NOTHING"
+label_settings = ExtResource("6_w11e6")
+horizontal_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="UI/LogScreen/ActivityContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("4_ftjwj")
+
+[node name="ScreenDisplay" type="MarginContainer" parent="UI/LogScreen"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 14
+
+[node name="HBox" type="HBoxContainer" parent="UI/LogScreen/ScreenDisplay"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/LogScreen/ScreenDisplay/HBox"]
+layout_mode = 2
+texture = ExtResource("7_hgkn3")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/LogScreen/ScreenDisplay/HBox"]
+layout_mode = 2
+texture = ExtResource("8_voyjw")
+
+[node name="TextureRect3" type="TextureRect" parent="UI/LogScreen/ScreenDisplay/HBox"]
+layout_mode = 2
+texture = ExtResource("7_hgkn3")
+
+[node name="TextureRect4" type="TextureRect" parent="UI/LogScreen/ScreenDisplay/HBox"]
+layout_mode = 2
+texture = ExtResource("7_hgkn3")
+
+[node name="BottomPanel" parent="UI/LogScreen" instance=ExtResource("9_mhfhc")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SettingsScreen" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SettingsButton" type="TextureButton" parent="UI"]
+layout_mode = 1
+offset_right = 113.0
+offset_bottom = 106.0
+texture_normal = ExtResource("11_ga41j")
+stretch_mode = 3
+
+[node name="LineEdit" type="LineEdit" parent="UI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -34.0
+offset_right = -14.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.219608, 0.203922, 0.266667, 1)
+theme_override_colors/font_color = Color(0.219608, 0.203922, 0.266667, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_8ded3")
+placeholder_text = "Exercise - Weight"
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
